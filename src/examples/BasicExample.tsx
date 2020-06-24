@@ -26,7 +26,7 @@ export const Navbar: Component = () => (
         <Link path="/route1">First route</Link>
         <Link path="/route2">Second route</Link>
         <Link path="/not-existing-route">No route</Link>
-        <Link path="/children">Children</Link>
+        <Link path="/children/">Children</Link>
         <Link full path="/route1">
           First route (ROOT)
         </Link>
