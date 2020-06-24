@@ -18,48 +18,43 @@ export const Link = createLinkComponent((props, link) => (
   />
 ));
 
-export const Navbar: Component = () => (
-  <nav class="navbar panel-block">
-    <div class="navbar-menu">
-      <div class="navbar-start">
-        <Link path="/">Index</Link>
-        <Link path="/route1">First route</Link>
-        <Link path="/route2">Second route</Link>
-        <Link path="/not-existing-route">No route</Link>
-        <Link path="/children/">Children</Link>
-        <Link full path="/route1">
-          First route (ROOT)
-        </Link>
-      </div>
-    </div>
-  </nav>
-);
-
-export const SwitchBlock: Component<{ id: string }> = (props) => (
-  <RouteSwitch id={props.id}>
-    <Route path="/">Index content</Route>
-    <Route path="/route1">First route content</Route>
-    <Route path="/route2">Second route content</Route>
-    <Route prefix path="/children">
-      <div class="container">{props.children}</div>
-    </Route>
-  </RouteSwitch>
-);
-
 export const TestSwitch: Component<{
   name: string;
-}> = (props) => (
-  <div class="panel">
-    <p class="panel-heading">{props.name}</p>
-    <div class="panel-block">
-      <Navbar />
-    </div>
+}> = (props) => {
+  console.log(`!create ${props.name}`);
+  return (
+    <div class="panel">
+      <p class="panel-heading">{props.name}</p>
+      <div class="panel-block">
+        <nav class="navbar panel-block">
+          <div class="navbar-menu">
+            <div class="navbar-start">
+              <Link path="/">Index</Link>
+              <Link path="/route1">First route</Link>
+              <Link path="/route2">Second route</Link>
+              <Link path="/not-existing-route">No route</Link>
+              <Link path="/children/">Children</Link>
+              <Link full path="/route1">
+                First route (ROOT)
+              </Link>
+            </div>
+          </div>
+        </nav>
+      </div>
 
-    <div class="panel-block">
-      <SwitchBlock id={props.name}>{props.children}</SwitchBlock>
+      <div class="panel-block">
+        <RouteSwitch>
+          <Route path="/">Index content</Route>
+          <Route path="/route1">First route content</Route>
+          <Route path="/route2">Second route content</Route>
+          <Route prefix path="/children">
+            <div class="container">{props.children}</div>
+          </Route>
+        </RouteSwitch>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 export const BasicExample: Component = () => {
   const { getLocation, getRoute } = useRouter();
